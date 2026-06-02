@@ -15,7 +15,6 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
@@ -53,9 +52,10 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 // Dependency Injection for Application and Infrastructure layers
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
-
 builder.Services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
+builder.Services.AddScoped<IProdutoRepository, ProdutoRepository>();
 
+builder.Services.AddScoped<IProdutoService, ProdutoService>();
 builder.Services.AddScoped<AuthService>();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
