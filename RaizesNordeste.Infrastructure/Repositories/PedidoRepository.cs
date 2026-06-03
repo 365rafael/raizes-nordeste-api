@@ -32,6 +32,11 @@ public class PedidoRepository : IPedidoRepository
             .FirstOrDefaultAsync(x => x.Id == id);
     }
 
+    public void Atualizar(Pedido pedido)
+    {
+        _context.Pedidos.Update(pedido);
+    }
+
     public async Task AdicionarAsync(Pedido pedido)
     {
         await _context.Pedidos.AddAsync(pedido);

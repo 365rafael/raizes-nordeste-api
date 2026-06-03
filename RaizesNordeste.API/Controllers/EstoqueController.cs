@@ -40,22 +40,11 @@ public class EstoqueController : ControllerBase
         int id,
         EstoqueMovimentacaoDto dto)
     {
-        try
-        {
-            await _estoqueService.EntradaAsync(
-            id,
-            dto.Quantidade);
+        await _estoqueService.EntradaAsync(
+        id,
+        dto.Quantidade);
 
-            return Ok("Entrada realizada.");
-        }
-        catch (Exception ex)
-        {
-            return BadRequest(new
-            {
-                mensagem = ex.Message
-            });
-        }
-
+        return Ok("Entrada realizada.");
     }
 
     [HttpPost("{id}/saida")]
@@ -63,20 +52,10 @@ public class EstoqueController : ControllerBase
     int id,
     EstoqueMovimentacaoDto dto)
     {
-        try
-        {
-            await _estoqueService.SaidaAsync(
-                id,
-                dto.Quantidade);
+        await _estoqueService.SaidaAsync(
+        id,
+        dto.Quantidade);
 
-            return Ok("Saída realizada.");
-        }
-        catch (Exception ex)
-        {
-            return BadRequest(new
-            {
-                mensagem = ex.Message
-            });
-        }
+        return Ok("Saída realizada.");
     }
 }

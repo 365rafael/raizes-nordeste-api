@@ -10,5 +10,7 @@ public interface IPedidoRepository
 
     Task AdicionarAsync(Pedido pedido);
 
+    void Atualizar(Pedido pedido);
+
     Task SaveChangesAsync();
 }
