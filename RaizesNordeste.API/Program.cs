@@ -54,8 +54,13 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
 builder.Services.AddScoped<IProdutoRepository, ProdutoRepository>();
+builder.Services.AddScoped<IUnidadeRepository, UnidadeRepository>();
+builder.Services.AddScoped<IEstoqueRepository, EstoqueRepository>();
+builder.Services.AddScoped<IPedidoRepository, PedidoRepository>();
 
+builder.Services.AddScoped<IEstoqueService, EstoqueService>();
 builder.Services.AddScoped<IProdutoService, ProdutoService>();
+builder.Services.AddScoped<IUnidadeService, UnidadeService>();
 builder.Services.AddScoped<AuthService>();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
