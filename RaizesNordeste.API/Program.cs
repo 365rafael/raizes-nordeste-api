@@ -106,4 +106,15 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+
+// Executa o seeding do banco de dados ao iniciar a aplicação
+using (var scope = app.Services.CreateScope())
+{
+    var context =
+        scope.ServiceProvider
+             .GetRequiredService<AppDbContext>();
+
+    await DatabaseSeeder.SeedAsync(context);
+}
+
 app.Run();
