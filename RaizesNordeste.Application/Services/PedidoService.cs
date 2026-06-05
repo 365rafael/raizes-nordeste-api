@@ -11,15 +11,18 @@ public class PedidoService : IPedidoService
     private readonly IPedidoRepository _pedidoRepository;
     private readonly IProdutoRepository _produtoRepository;
     private readonly IEstoqueRepository _estoqueRepository;
+    private readonly IUsuarioRepository _usuarioRepository;
 
     public PedidoService(
         IPedidoRepository pedidoRepository,
         IProdutoRepository produtoRepository,
-        IEstoqueRepository estoqueRepository)
+        IEstoqueRepository estoqueRepository,
+        IUsuarioRepository usuarioRepository)
     {
         _pedidoRepository = pedidoRepository;
         _produtoRepository = produtoRepository;
         _estoqueRepository = estoqueRepository;
+        _usuarioRepository = usuarioRepository;
     }
 
     public async Task<List<PedidoResponseDto>> ObterTodosAsync()
@@ -46,6 +49,12 @@ public class PedidoService : IPedidoService
             CanalPedido = dto.CanalPedido,
             Status = StatusPedidoEnum.AGUARDANDO_PAGAMENTO
         };
+
+        var cliente =
+        await _usuarioRepository.ObterPorIdAsync(dto.ClienteId);
+
+        if (cliente == null)
+            throw new Exception("Cliente não encontrado.");
 
         decimal total = 0;
 

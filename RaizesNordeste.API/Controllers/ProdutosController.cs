@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using RaizesNordeste.Application.DTOs.Produto;
 using RaizesNordeste.Application.Interfaces;
+using RaizesNordeste.Domain.Enums;
 
 namespace RaizesNordeste.API.Controllers;
 
@@ -36,6 +37,7 @@ public class ProdutosController : ControllerBase
         return Ok(produto);
     }
 
+    [Authorize(Roles = "ADMIN")]
     [HttpPost]
     public async Task<IActionResult> Criar(
         ProdutoCreateDto dto)
@@ -58,6 +60,7 @@ public class ProdutosController : ControllerBase
         return NoContent();
     }
 
+    [Authorize(Roles = "ADMIN")]
     [HttpDelete("{id}")]
     public async Task<IActionResult> Remover(int id)
     {

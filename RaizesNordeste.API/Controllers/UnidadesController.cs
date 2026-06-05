@@ -34,6 +34,7 @@ public class UnidadesController : ControllerBase
         return Ok(unidade);
     }
 
+    [Authorize(Roles = "ADMIN")]
     [HttpPost]
     public async Task<IActionResult> Criar(UnidadeCreateDto dto)
     {
